@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
         	if ("admin".equals(user.getRole())) {
         	    response.sendRedirect(request.getContextPath() + "/adminDashboard");
         	} else {
-        	    response.sendRedirect(request.getContextPath() + "/userDashboard");
+        	    response.sendRedirect(request.getContextPath() + "/home");
         	}
         } else {
             // Wrong password
