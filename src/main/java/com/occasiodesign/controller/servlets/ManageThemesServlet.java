@@ -25,7 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * Only admins can access this page (enforced by AuthenticationFilter).
  */
-@WebServlet("/manageThemes")
+@WebServlet(name = "ManageThemes" , urlPatterns = {"/manageThemes"})
 public class ManageThemesServlet extends HttpServlet {
 
     /* ThemeDAO handles all database operations for themes */

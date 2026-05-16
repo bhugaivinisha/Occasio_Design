@@ -7,6 +7,7 @@ import com.occasiodesign.dao.BookingDAO;
 import com.occasiodesign.model.Booking;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet for admin to view and update all bookings.
  */
-
+@WebServlet(name = "ManageBooking" , urlPatterns = {"/manageBookings"})
 public class ManageBookingsServlet extends HttpServlet {
 
     @Override

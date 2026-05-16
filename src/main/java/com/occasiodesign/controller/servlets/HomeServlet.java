@@ -2,7 +2,7 @@ package com.occasiodesign.controller.servlets;
 
 import java.io.IOException;
 import java.util.List;
-
+import com.occasiodesign.service.EventService;
 import com.occasiodesign.dao.EventTypeDAO;
 import com.occasiodesign.model.EventType;
 
@@ -23,11 +23,12 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * Accessible by ALL visitors — logged in or not.
  */
-@WebServlet("/home")
+@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
 
     /* EventTypeDAO handles all database operations for event types */
-    private EventTypeDAO eventTypeDAO = new EventTypeDAO();
+    private EventService eventService = new EventService();
+    
 
     /**
      * GET request: load event types and show home page.
@@ -38,7 +39,7 @@ public class HomeServlet extends HttpServlet {
 
         try {
             /* Load all event types from the database */
-            List<EventType> eventTypes = eventTypeDAO.getAllEventTypes();
+        	List<EventType> eventTypes = eventService.getAllEvents();
 
             /* Put the list into request attributes so home.jsp can use it */
             request.setAttribute("eventTypes", eventTypes);

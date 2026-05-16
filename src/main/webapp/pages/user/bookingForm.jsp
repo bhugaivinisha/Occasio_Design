@@ -27,27 +27,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Book an Event - OccasioDesign</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
-    <style>
-        /* Extra styles for the booking form page */
-        .booking-wrapper {
-            max-width: 750px; margin: 50px auto; padding: 0 20px 60px;
-        }
-        .booking-card {
-            background: white; border-radius: 16px; padding: 40px;
-            box-shadow: var(--shadow-md); border-top: 5px solid var(--brown-mid);
-        }
-        .booking-card h1 {
-            color: var(--brown-dark); font-size: 1.7rem; margin-bottom: 6px;
-        }
-        .booking-card .subtitle {
-            color: var(--text-light); margin-bottom: 28px; font-size: 0.95rem;
-        }
+        <style>
+        /* Booking form page — colors from main.css vars */
+        .booking-wrapper { max-width: 750px; margin: 50px auto; padding: 0 20px 60px; }
+        .booking-card { background: white; border-radius: 22px; padding: 40px; box-shadow: var(--shadow-md); border-top: 5px solid var(--gold); }
+        .booking-card h1 { color: var(--purple-dark); font-size: 1.7rem; margin-bottom: 6px; font-family: Georgia, serif; font-weight: 800; }
+        .booking-card .subtitle { color: var(--text-light); margin-bottom: 28px; font-size: 0.95rem; }
         .price-preview {
-            background: var(--cream); border: 1px solid var(--brown-pale);
-            border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
-            border-left: 4px solid var(--brown-light);
+            background: var(--purple-ghost); border: 1.5px solid #ddd6fe;
+            border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; border-left: 4px solid var(--gold);
         }
-        .price-preview strong { color: var(--brown-dark); }
+        .price-preview strong { color: var(--purple-dark); }
     </style>
 </head>
 <body>
@@ -56,7 +46,7 @@
 <nav>
     <a class="logo" href="${pageContext.request.contextPath}/home">✦ OccasioDesign</a>
     <div class="nav-links">
-        <a href="${pageContext.request.contextPath}/home">🏠 Home</a>
+        <a href="${pageContext.request.contextPath}/home"> Home</a>
         <a href="${pageContext.request.contextPath}/about">About</a>
         <a href="${pageContext.request.contextPath}/contact">Contact</a>
         <a href="${pageContext.request.contextPath}/userDashboard">My Dashboard</a>
@@ -68,7 +58,7 @@
 <!-- ============ BOOKING FORM ============ -->
 <div class="booking-wrapper">
     <div class="booking-card">
-        <h1>🎉 Book Your Event</h1>
+        <h1> Book Your Event</h1>
         <p class="subtitle">Fill in the details below and our team will confirm your booking shortly.</p>
 
         <!-- Success message (e.g. booking submitted successfully) -->
@@ -100,7 +90,7 @@
                                 /* Pre-select the event if user came from a "Book Now" card */
                                 boolean selected = preSelectedEventId.equals(String.valueOf(et.getEventTypeId()));
                     %>
-                    <option value="<%= et.getEventId() %>"
+                    <option value="<%= et.getEventTypeId() %>"
                         <%= selected ? "selected" : "" %>>
                         <%= et.getEventName() %> — Rs. <%= et.getBasePrice() %>
                     </option>
@@ -165,7 +155,7 @@
             </div>
 
             <button type="submit" class="btn-primary">
-                🎉 Submit Booking Request
+                Submit Booking Request
             </button>
 
             <p class="link-text" style="margin-top:16px;">
@@ -177,8 +167,8 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-    <p><strong style="color: var(--gold);">✦ OccasioDesign</strong> — Kathmandu, Nepal</p>
-    <p style="margin-top: 8px;">📞 9810000000 &nbsp;|&nbsp; ✉ info@occasiodesign.com.np</p>
+    <p><strong style="color: var(--gold);">✦ OccasioDesign</strong> — Pokhara, Nepal</p>
+    <p style="margin-top: 8px;"> 9810000000 &nbsp;|&nbsp; info@occasiodesign.com.np</p>
     <p style="margin-top: 12px; font-size: 0.8rem;">© 2026 OccasioDesign. All rights reserved.</p>
 </footer>
 

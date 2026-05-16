@@ -31,13 +31,13 @@
 <nav>
     <a class="logo" href="${pageContext.request.contextPath}/adminDashboard">✦ OccasioDesign Admin</a>
     <div class="nav-links">
-        <a href="${pageContext.request.contextPath}/home">🏠 Home</a>
+        <a href="${pageContext.request.contextPath}/home"> Home</a>
         <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
         <a href="${pageContext.request.contextPath}/manageUsers">Users</a>
         <a href="${pageContext.request.contextPath}/manageEvents">Events</a>
         <a href="${pageContext.request.contextPath}/manageThemes">Themes</a>
         <a href="${pageContext.request.contextPath}/manageBookings">Bookings</a>
-        <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </div>
 </nav>
 
@@ -47,20 +47,20 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-title">Admin Menu</div>
-        <a href="${pageContext.request.contextPath}/adminDashboard">📊 Dashboard</a>
-        <a href="${pageContext.request.contextPath}/manageUsers">👥 Manage Users</a>
-        <a href="${pageContext.request.contextPath}/manageEvents">🎉 Manage Events</a>
-        <a href="${pageContext.request.contextPath}/manageThemes" class="active">🎨 Manage Themes</a>
-        <a href="${pageContext.request.contextPath}/manageBookings">📋 Manage Bookings</a>
+        <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
+        <a href="${pageContext.request.contextPath}/manageUsers"> Manage Users</a>
+        <a href="${pageContext.request.contextPath}/manageEvents"> Manage Events</a>
+        <a href="${pageContext.request.contextPath}/manageThemes" class="active">Manage Themes</a>
+        <a href="${pageContext.request.contextPath}/manageBookings">Manage Bookings</a>
         <div class="sidebar-title" style="margin-top:24px;">General</div>
-        <a href="${pageContext.request.contextPath}/home">🏠 View Home Page</a>
-        <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
+        <a href="${pageContext.request.contextPath}/home">View Home Page</a>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </div>
 
     <!-- MAIN CONTENT AREA -->
     <div class="dashboard-main">
         <div class="dashboard-header">
-            <h1>🎨 Manage Decoration Themes</h1>
+            <h1> Manage Decoration Themes</h1>
             <p>Add, edit, or remove the decoration themes available for booking.</p>
         </div>
 
@@ -74,7 +74,7 @@
 
         <!-- ===== ADD / EDIT THEME FORM ===== -->
         <div class="table-wrapper" style="padding:24px; margin-bottom:28px;">
-            <h3 style="color:var(--brown-dark); margin-bottom:18px;">
+            <h3 style="color:var(--purple-dark); margin-bottom:18px;">
                 <%= isEditMode ? "✏️ Edit Theme" : "➕ Add New Theme" %>
             </h3>
 
@@ -99,7 +99,7 @@
                     <div class="form-group" style="flex:1 1 150px;">
                         <label>Extra Price (Rs.)</label>
                         <input type="number" name="extraPrice" placeholder="e.g. 1500" min="0"
-                               value="<%= isEditMode ? editTheme.getPrice() : "" %>" required/>
+                               value="<%= isEditMode ? editTheme.getExtraPrice() : "" %>" required/>
                     </div>
                     <!-- Event Type ID -->
                     <div class="form-group" style="flex:1 1 150px;">
@@ -119,18 +119,18 @@
 
                 <div style="display:flex; gap:12px;">
                     <button type="submit" class="btn btn-success">
-                        <%= isEditMode ? "💾 Save Changes" : "➕ Add Theme" %>
+                        <%= isEditMode ? " Save Changes" : "➕ Add Theme" %>
                     </button>
                     <% if (isEditMode) { %>
                     <a href="${pageContext.request.contextPath}/manageThemes"
-                       class="btn btn-secondary">✖ Cancel</a>
+                       class="btn btn-secondary"> Cancel</a>
                     <% } %>
                 </div>
             </form>
         </div>
 
         <!-- ===== THEMES LIST TABLE ===== -->
-        <h2 style="color:var(--brown-dark); margin-bottom:16px; font-size:1.2rem;">All Decoration Themes</h2>
+        <h2 style="color:var(--purple-dark); margin-bottom:16px; font-size:1.2rem;">All Decoration Themes</h2>
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -161,7 +161,7 @@
                         <td>
                             <!-- EDIT: loads this theme's data into the form above -->
                             <a href="${pageContext.request.contextPath}/manageThemes?action=edit&id=<%= t.getThemeId() %>"
-                               class="btn btn-warning">✏️ Edit</a>
+                               class="btn btn-warning">Edit</a>
 
                             <!-- DELETE: submits form with action=delete -->
                             <form method="post" action="${pageContext.request.contextPath}/manageThemes"
@@ -170,7 +170,7 @@
                                 <input type="hidden" name="themeId" value="<%= t.getThemeId() %>"/>
                                 <button class="btn btn-danger"
                                         onclick="return confirm('Delete theme: <%= t.getThemeName() %>?')">
-                                    🗑️ Delete
+                                    Delete
                                 </button>
                             </form>
                         </td>

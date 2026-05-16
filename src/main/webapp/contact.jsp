@@ -17,24 +17,20 @@
     <title>Contact Us - OccasioDesign</title>
     <!-- Same stylesheet as every other page -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
-    <style>
-        /* Extra styles for the contact form */
-        .contact-grid {
-            display: flex; gap: 32px; flex-wrap: wrap; margin-top: 24px;
-        }
-        .contact-form-box {
-            flex: 2 1 320px;
-        }
-        .contact-info-box {
-            flex: 1 1 220px;
-        }
+        <style>
+        /* Contact page grid layout — colors from main.css vars */
+        .contact-grid { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 24px; }
+        .contact-form-box { flex: 2 1 320px; }
+        .contact-info-box { flex: 1 1 220px; }
         .info-item {
-            display: flex; align-items: flex-start; gap: 12px; 
-            padding: 16px; background: var(--cream); border-radius: 10px; 
-            margin-bottom: 14px; border-left: 3px solid var(--brown-light);
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 16px; background: var(--purple-ghost); border-radius: 12px;
+            margin-bottom: 14px; border-left: 3px solid var(--gold);
+            transition: transform 0.2s;
         }
+        .info-item:hover { transform: translateX(3px); }
         .info-item .icon { font-size: 1.5rem; }
-        .info-item strong { color: var(--brown-dark); display: block; margin-bottom: 3px; }
+        .info-item strong { color: var(--purple-dark); display: block; margin-bottom: 3px; }
         .info-item span { color: var(--text-light); font-size: 0.9rem; }
     </style>
 </head>
@@ -85,7 +81,7 @@
                 <form action="${pageContext.request.contextPath}/contact" method="post">
                     <div class="form-group">
                         <label>Your Full Name</label>
-                        <input type="text" name="name" placeholder="e.g. Ram Bahadur Thapa" required/>
+                        <input type="text" name="fullName" placeholder="e.g. Ram Bahadur Thapa" required/>
                     </div>
                     <div class="form-group">
                         <label>Email Address</label>
@@ -102,7 +98,7 @@
                                   placeholder="Tell us about your event, date, number of guests..." 
                                   style="resize:vertical;" required></textarea>
                     </div>
-                    <button type="submit" class="btn-primary">📤 Send Message</button>
+                    <button type="submit" class="btn-primary"> Send Message</button>
                 </form>
             </div>
 
@@ -111,14 +107,14 @@
                 <h3 style="color:var(--brown-dark); margin-bottom:16px;">Other Ways to Reach Us</h3>
                 
                 <div class="info-item">
-                    <span class="icon">📞</span>
+                    <span class="icon"></span>
                     <div>
                         <strong>Phone</strong>
                         <span>9810000000</span>
                     </div>
                 </div>
                 <div class="info-item">
-                    <span class="icon">✉</span>
+                    <span class="icon"></span>
                     <div>
                         <strong>Email</strong>
                         <span>info@occasiodesign.com.np</span>
@@ -128,11 +124,11 @@
                     <span class="icon">📍</span>
                     <div>
                         <strong>Location</strong>
-                        <span>Kathmandu, Nepal</span>
+                        <span>Pokhara, Nepal</span>
                     </div>
                 </div>
                 <div class="info-item">
-                    <span class="icon">🕐</span>
+                    <span class="icon"></span>
                     <div>
                         <strong>Working Hours</strong>
                         <span>Sunday – Friday, 9am – 6pm</span>
@@ -145,8 +141,8 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-    <p><strong style="color: var(--gold);">✦ OccasioDesign</strong> — Kathmandu, Nepal</p>
-    <p style="margin-top: 8px;">📞 9810000000 &nbsp;|&nbsp; ✉ info@occasiodesign.com.np</p>
+    <p><strong style="color: var(--gold);">✦ OccasioDesign</strong> — Pokhara, Nepal</p>
+    <p style="margin-top: 8px;">9810000000 &nbsp;|&nbsp;  info@occasiodesign.com.np</p>
     <p style="margin-top: 12px; font-size: 0.8rem;">© 2026 OccasioDesign. All rights reserved.</p>
 </footer>
 

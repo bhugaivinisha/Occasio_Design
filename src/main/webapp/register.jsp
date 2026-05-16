@@ -14,6 +14,7 @@
     <title>Register - OccasioDesign</title>
     <!-- Main stylesheet for the brown theme -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
+    
     <style>
         /* Register page has a wider form because more fields */
         .form-container { max-width: 520px; }
@@ -34,6 +35,7 @@
 </nav>
 
 <!-- ============ REGISTER FORM ============ -->
+
 <div class="form-page">
     <div class="form-container">
 
@@ -136,10 +138,10 @@
                        value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>"/>
             </div>
 
-            <button type="submit" class="btn-primary">✅ Create Account</button>
+            <button type="submit" class="btn-primary">Create Account</button><br><br>
 
             <p class="link-text">Already have an account?
-                <a href="${pageContext.request.contextPath}/login">Login here</a>
+               <a href="${pageContext.request.contextPath}/login" class="btn-secondary">Login here</a>
             </p>
         </form>
     </div>

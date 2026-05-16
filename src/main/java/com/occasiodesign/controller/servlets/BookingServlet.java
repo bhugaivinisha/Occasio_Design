@@ -1,32 +1,19 @@
 package com.occasiodesign.controller.servlets;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
-
 import com.occasiodesign.dao.BookingDAO;
 import com.occasiodesign.dao.EventTypeDAO;
 import com.occasiodesign.dao.ThemeDAO;
 import com.occasiodesign.model.Booking;
-import com.occasiodesign.model.EventType;
-import com.occasiodesign.model.Theme;
 import com.occasiodesign.utilities.SessionUtil;
-import com.occasiodesign.utilities.ValidationUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.math.BigDecimal;
+// java.sql.Date import HATAU — yo nai problem thiyo!
 
-/**
- * BookingServlet - Handles creating new bookings.
- * GET /booking: shows booking form with themes for selected event
- * POST /booking: saves the new booking
- * GET /booking?action=cancel&id=X: cancels a booking
- * URL: /booking
- */
 @WebServlet(name = "BookingServlet", urlPatterns = {"/booking"})
 public class BookingServlet extends HttpServlet {
 
@@ -36,112 +23,102 @@ public class BookingServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        // Cancel a booking
+        // --- Cancel booking ---
         if ("cancel".equals(action)) {
-            String idStr = request.getParameter("id");
-            if (idStr != null) {
-                int bookingId = Integer.parseInt(idStr);
-                BookingDAO bookingDAO = new BookingDAO();
-                bookingDAO.updateBookingStatus(bookingId, "cancelled");
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                new BookingDAO().updateBookingStatus(id, "cancelled");
+            } catch (Exception e) {
+                // ignore cancel error
             }
             response.sendRedirect(request.getContextPath() + "/userDashboard");
             return;
         }
 
-        // Load themes for a selected event
-        String eventIdStr = request.getParameter("eventId");
-        if (eventIdStr != null) {
-            int eventId = Integer.parseInt(eventIdStr);
-            ThemeDAO themeDAO = new ThemeDAO();
+        // --- Load booking form ---
+        try {
             EventTypeDAO eventTypeDAO = new EventTypeDAO();
+            ThemeDAO themeDAO = new ThemeDAO();
 
-            List<Theme> themes = themeDAO.getThemesByEventId(eventId);
-            EventType selectedEvent = eventTypeDAO.getEventTypeById(eventId);
+            // Sabai event types load gara (dropdown ko lagi)
+            request.setAttribute("eventTypes", eventTypeDAO.getAllEventTypes());
 
-            request.setAttribute("themes", themes);
-            request.setAttribute("selectedEvent", selectedEvent);
+            // KEY FIX: eventId aayo bhane tyo event ko themes, 
+            //          xaina bhane SABAI themes load gara
+            String eventIdStr = request.getParameter("eventId");
+            if (eventIdStr != null && !eventIdStr.trim().isEmpty()) {
+                int eventId = Integer.parseInt(eventIdStr);
+                request.setAttribute("themes", themeDAO.getThemesByEventId(eventId));
+            } else {
+                // Sabai themes load gara — yahi fix ho!
+                request.setAttribute("themes", themeDAO.getAllThemes());
+            }
+
+        } catch (Exception e) {
+            request.setAttribute("error", "Could not load booking options. Please try again.");
         }
 
-        // Load all event types for the dropdown
-        EventTypeDAO eventTypeDAO = new EventTypeDAO();
-        request.setAttribute("eventTypes", eventTypeDAO.getAllEventTypes());
-
-        request.getRequestDispatcher("pages/user/bookingForm.jsp").forward(request, response);
+        request.getRequestDispatcher("pages/user/bookingForm.jsp")
+               .forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Get form values
-        String eventIdStr = request.getParameter("eventId");
-        String themeIdStr = request.getParameter("themeId");
-        String eventDateStr = request.getParameter("eventDate");
-        String eventLocation = request.getParameter("eventLocation");
-        String guestsStr = request.getParameter("numberOfGuests");
-        String specialRequest = request.getParameter("specialRequest");
+        try {
+            // Session bata userId lau
+            Integer userId = (Integer) SessionUtil.getAttribute(request, "userId");
+            if (userId == null) {
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
+            }
 
-        // Validate inputs
-        String error = "";
-        if (ValidationUtil.isNullOrEmpty(eventIdStr)) {
-			error += "Event is required. ";
-		}
-        if (ValidationUtil.isNullOrEmpty(themeIdStr)) {
-			error += "Theme is required. ";
-		}
-        if (ValidationUtil.isNullOrEmpty(eventDateStr)) {
-			error += "Event date is required. ";
-		}
-        if (ValidationUtil.isNullOrEmpty(eventLocation)) {
-			error += "Location is required. ";
-		}
-        if (ValidationUtil.isNullOrEmpty(guestsStr)) {
-			error += "Number of guests is required. ";
-		}
+            // Form bata data lau
+            int eventId      = Integer.parseInt(request.getParameter("eventTypeId"));
+            int themeId      = Integer.parseInt(request.getParameter("themeId"));
+            String eventDate = request.getParameter("eventDate");   // "2026-06-15" format
+            String location  = request.getParameter("eventLocation");
+            int guests       = Integer.parseInt(request.getParameter("numberOfGuests"));
+            String special   = request.getParameter("specialRequests");
+            if (special == null) special = "";
 
-        if (!error.isEmpty()) {
-            request.setAttribute("error", error);
-            doGet(request, response);
-            return;
+            // Price calculate gara
+            EventTypeDAO eventTypeDAO = new EventTypeDAO();
+            ThemeDAO themeDAO         = new ThemeDAO();
+            BigDecimal basePrice  = eventTypeDAO.getEventTypeById(eventId).getBasePrice();
+            BigDecimal themePrice = themeDAO.getThemeById(themeId).getPrice();
+            BigDecimal total      = basePrice.add(themePrice);
+
+            // Booking object banau
+            Booking booking = new Booking();
+            booking.setUserId(userId);
+            booking.setEventId(eventId);
+            booking.setThemeId(themeId);
+            booking.setEventDate(java.time.LocalDate.parse(eventDate)); // 
+            booking.setEventLocation(location);
+            booking.setNumberOfGuests(guests);
+            booking.setTotalPrice(total);
+            booking.setSpecialRequest(special);
+            booking.setStatus("pending");
+
+            // Database ma save gara
+            new BookingDAO().insertBooking(booking);
+
+            // Success — dashboard pathau
+            response.sendRedirect(request.getContextPath() + "/userDashboard");
+
+        } catch (Exception e) {
+            // Error aayo bhane form wapas dekhaau
+            try {
+                request.setAttribute("error", "Booking failed: " + e.getMessage());
+                request.setAttribute("eventTypes", new EventTypeDAO().getAllEventTypes());
+                request.setAttribute("themes", new ThemeDAO().getAllThemes());
+                request.getRequestDispatcher("pages/user/bookingForm.jsp")
+                       .forward(request, response);
+            } catch (Exception ex) {
+                response.sendRedirect(request.getContextPath() + "/booking");
+            }
         }
-
-        // Parse values
-        int eventId = Integer.parseInt(eventIdStr);
-        int themeId = Integer.parseInt(themeIdStr);
-        int numberOfGuests = Integer.parseInt(guestsStr);
-        LocalDate eventDate = LocalDate.parse(eventDateStr);
-
-        // Calculate total price (event base price + theme price)
-        EventTypeDAO eventTypeDAO = new EventTypeDAO();
-        ThemeDAO themeDAO = new ThemeDAO();
-        EventType event = eventTypeDAO.getEventTypeById(eventId);
-        Theme theme = themeDAO.getThemeById(themeId);
-
-        BigDecimal totalPrice = event.getBasePrice().add(theme.getPrice());
-
-        // Get logged-in user ID from session
-        int userId = (int) SessionUtil.getAttribute(request, "userId");
-
-        // Create and save the booking
-        Booking booking = new Booking();
-        booking.setUserId(userId);
-        booking.setEventId(eventId);
-        booking.setThemeId(themeId);
-        booking.setEventDate(eventDate);
-        booking.setEventLocation(eventLocation);
-        booking.setNumberOfGuests(numberOfGuests);
-        booking.setTotalPrice(totalPrice);
-        booking.setSpecialRequest(specialRequest != null ? specialRequest : "");
-
-        BookingDAO bookingDAO = new BookingDAO();
-        int result = bookingDAO.insertBooking(booking);
-
-        if (result == 1) {
-            request.setAttribute("success", "Booking created successfully!");
-        } else {
-            request.setAttribute("error", "Failed to create booking. Please try again.");
-        }
-
-        response.sendRedirect(request.getContextPath() + "/userDashboard");
     }
 }

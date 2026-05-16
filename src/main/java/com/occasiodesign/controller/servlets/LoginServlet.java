@@ -61,19 +61,36 @@ public class LoginServlet extends HttpServlet {
 
         // Check if typed password matches the stored hashed password
         boolean matched = PasswordUtil.checkPassword(typedPassword, user.getPassword());
-
+//-----------------------------
         if (matched) {
-        	// After successful login — save user info in session
-        	SessionUtil.setAttribute(request, "userId", user.getUserId());
-        	SessionUtil.setAttribute(request, "fullName", user.getFullName());
-        	SessionUtil.setAttribute(request, "role", user.getRole());
+            // Get which button they clicked (admin or user)
+            String loginType = request.getParameter("loginType");
 
-        	// Send to the right dashboard based on role
-        	if ("admin".equals(user.getRole())) {
-        	    response.sendRedirect(request.getContextPath() + "/adminDashboard");
-        	} else {
-        	    response.sendRedirect(request.getContextPath() + "/home");
-        	}
+            // ❌ If they clicked Admin button but they are NOT admin → show error!
+            if ("admin".equals(loginType) && !"admin".equals(user.getRole())) {
+                request.setAttribute("error", "You do not have admin access!");
+                request.getRequestDispatcher("login.jsp?type=admin").forward(request, response);
+                return;
+            }
+
+            // ❌ If they clicked User button but they ARE admin → show error!
+            if ("user".equals(loginType) && "admin".equals(user.getRole())) {
+                request.setAttribute("error", "Please use Admin Login instead!");
+                request.getRequestDispatcher("login.jsp?type=user").forward(request, response);
+                return;
+            }
+
+            // All good! Save session and redirect
+            SessionUtil.setAttribute(request, "userId", user.getUserId());
+            SessionUtil.setAttribute(request, "fullName", user.getFullName());
+            SessionUtil.setAttribute(request, "role", user.getRole());
+
+            if ("admin".equals(user.getRole())) {
+                response.sendRedirect(request.getContextPath() + "/adminDashboard");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/home");
+            }
+        	//----------------------
         } else {
             // Wrong password
             request.setAttribute("error", "Invalid email or password!");

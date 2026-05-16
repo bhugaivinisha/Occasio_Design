@@ -7,6 +7,7 @@ import com.occasiodesign.dao.UserDAO;
 import com.occasiodesign.model.User;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet for admin to manage all users (view and delete).
  */
+@WebServlet(name = "ManageUser" , urlPatterns = {"/manageUsers"})
 public class ManageUsersServlet extends HttpServlet {
 
     @Override

@@ -26,13 +26,13 @@
 <nav>
     <a class="logo" href="${pageContext.request.contextPath}/adminDashboard">✦ OccasioDesign Admin</a>
     <div class="nav-links">
-        <a href="${pageContext.request.contextPath}/home">🏠 Home</a>
+        <a href="${pageContext.request.contextPath}/home">Home</a>
         <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
         <a href="${pageContext.request.contextPath}/manageUsers">Users</a>
         <a href="${pageContext.request.contextPath}/manageEvents">Events</a>
         <a href="${pageContext.request.contextPath}/manageThemes">Themes</a>
         <a href="${pageContext.request.contextPath}/manageBookings">Bookings</a>
-        <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </div>
 </nav>
 
@@ -42,20 +42,20 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-title">Admin Menu</div>
-        <a href="${pageContext.request.contextPath}/adminDashboard">📊 Dashboard</a>
-        <a href="${pageContext.request.contextPath}/manageUsers" class="active">👥 Manage Users</a>
-        <a href="${pageContext.request.contextPath}/manageEvents">🎉 Manage Events</a>
-        <a href="${pageContext.request.contextPath}/manageThemes">🎨 Manage Themes</a>
-        <a href="${pageContext.request.contextPath}/manageBookings">📋 Manage Bookings</a>
+        <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
+        <a href="${pageContext.request.contextPath}/manageUsers" class="active">Manage Users</a>
+        <a href="${pageContext.request.contextPath}/manageEvents">Manage Events</a>
+        <a href="${pageContext.request.contextPath}/manageThemes">Manage Themes</a>
+        <a href="${pageContext.request.contextPath}/manageBookings">Manage Bookings</a>
         <div class="sidebar-title" style="margin-top:24px;">General</div>
-        <a href="${pageContext.request.contextPath}/home">🏠 View Home Page</a>
-        <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
+        <a href="${pageContext.request.contextPath}/home">View Home Page</a>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </div>
 
     <!-- MAIN CONTENT AREA -->
     <div class="dashboard-main">
         <div class="dashboard-header">
-            <h1>👥 Manage Users</h1>
+            <h1> Manage Users</h1>
             <p>View and manage all registered users in the system.</p>
         </div>
 
@@ -112,7 +112,7 @@
                                 <input type="hidden" name="userId" value="<%= u.getUserId() %>"/>
                                 <button class="btn btn-danger"
                                         onclick="return confirm('Delete user: <%= u.getFullName() %>? This will also delete their bookings!')">
-                                    🗑️ Delete
+                                     Delete
                                 </button>
                             </form>
                             <% } else { %>

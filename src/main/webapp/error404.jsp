@@ -1,10 +1,11 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>500 - Server Error | OccasioDesign</title>
+    <title>404 - Page Not Found | OccasioDesign</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
     <style>
         body {
             font-family: 'Jost', sans-serif;
@@ -55,11 +56,12 @@
 </head>
 <body>
     <div class="error-box">
-        <h1>500</h1>
-        <h2>Internal Server Error</h2>
-        <p>Sorry, something went wrong.<br>Please try again later.</p>
-        
-        <a href="http://localhost:8088/OccasioDesign/home" class="btn-home">Go Back Home</a>
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>The page you are looking for does not exist or has been moved.</p>
+        <a href="${pageContext.request.contextPath}/home" class="btn-home">
+            ← Go Back to Home
+        </a>
     </div>
 </body>
 </html>

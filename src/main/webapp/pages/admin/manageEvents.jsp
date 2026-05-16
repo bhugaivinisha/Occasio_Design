@@ -31,13 +31,13 @@
 <nav>
     <a class="logo" href="${pageContext.request.contextPath}/adminDashboard">✦ OccasioDesign Admin</a>
     <div class="nav-links">
-        <a href="${pageContext.request.contextPath}/home">🏠 Home</a>
+        <a href="${pageContext.request.contextPath}/home"> Home</a>
         <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
         <a href="${pageContext.request.contextPath}/manageUsers">Users</a>
         <a href="${pageContext.request.contextPath}/manageEvents">Events</a>
         <a href="${pageContext.request.contextPath}/manageThemes">Themes</a>
         <a href="${pageContext.request.contextPath}/manageBookings">Bookings</a>
-        <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
+        <a href="${pageContext.request.contextPath}/logout"> Logout</a>
     </div>
 </nav>
 
@@ -47,20 +47,20 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-title">Admin Menu</div>
-        <a href="${pageContext.request.contextPath}/adminDashboard">📊 Dashboard</a>
-        <a href="${pageContext.request.contextPath}/manageUsers">👥 Manage Users</a>
-        <a href="${pageContext.request.contextPath}/manageEvents" class="active">🎉 Manage Events</a>
-        <a href="${pageContext.request.contextPath}/manageThemes">🎨 Manage Themes</a>
-        <a href="${pageContext.request.contextPath}/manageBookings">📋 Manage Bookings</a>
+        <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
+        <a href="${pageContext.request.contextPath}/manageUsers">Manage Users</a>
+        <a href="${pageContext.request.contextPath}/manageEvents" class="active">Manage Events</a>
+        <a href="${pageContext.request.contextPath}/manageThemes">Manage Themes</a>
+        <a href="${pageContext.request.contextPath}/manageBookings"> Manage Bookings</a>
         <div class="sidebar-title" style="margin-top:24px;">General</div>
-        <a href="${pageContext.request.contextPath}/home">🏠 View Home Page</a>
-        <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
+        <a href="${pageContext.request.contextPath}/home">View Home Page</a>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </div>
 
     <!-- MAIN CONTENT AREA -->
     <div class="dashboard-main">
         <div class="dashboard-header">
-            <h1>🎉 Manage Event Types</h1>
+            <h1> Manage Event Types</h1>
             <p>Add, edit, or remove the event types shown on the home page.</p>
         </div>
 
@@ -74,7 +74,7 @@
 
         <!-- ===== ADD / EDIT EVENT FORM ===== -->
         <div class="table-wrapper" style="padding:24px; margin-bottom:28px;">
-            <h3 style="color:var(--brown-dark); margin-bottom:18px;">
+            <h3 style="color:var(--purple-dark); margin-bottom:18px;">
                 <%= isEditMode ? "✏️ Edit Event Type" : "➕ Add New Event Type" %>
             </h3>
 
@@ -123,14 +123,14 @@
                     <% if (isEditMode) { %>
                     <!-- Cancel edit — go back to just viewing the list -->
                     <a href="${pageContext.request.contextPath}/manageEvents"
-                       class="btn btn-secondary">✖ Cancel</a>
+                       class="btn btn-secondary"> Cancel</a>
                     <% } %>
                 </div>
             </form>
         </div>
 
         <!-- ===== EVENT TYPES LIST TABLE ===== -->
-        <h2 style="color:var(--brown-dark); margin-bottom:16px; font-size:1.2rem;">All Event Types</h2>
+        <h2 style="color:var(--purple-dark); margin-bottom:16px; font-size:1.2rem;">All Event Types</h2>
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -159,16 +159,16 @@
                         <td>
                             <!-- EDIT button: goes to /manageEvents?action=edit&id=X -->
                             <a href="${pageContext.request.contextPath}/manageEvents?action=edit&id=<%= et.getEventTypeId() %>"
-                               class="btn btn-warning">✏️ Edit</a>
+                               class="btn btn-warning">Edit</a>
 
                             <!-- DELETE button: POST form to delete -->
                             <form method="post" action="${pageContext.request.contextPath}/manageEvents"
                                   style="display:inline">
                                 <input type="hidden" name="action" value="delete"/>
-                                <input type="hidden" name="eventTypeId" value="<%= et.getEventId() %>"/>
+                                <input type="hidden" name="eventTypeId" value="<%= et.getEventTypeId() %>"/>
                                 <button class="btn btn-danger"
                                         onclick="return confirm('Delete event type: <%= et.getEventName() %>?')">
-                                    🗑️ Delete
+                                     Delete
                                 </button>
                             </form>
                         </td>

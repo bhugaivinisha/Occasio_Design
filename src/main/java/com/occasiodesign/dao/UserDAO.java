@@ -247,6 +247,23 @@ public class UserDAO implements UserDAOInterface {
             }
 			return 0;
         }
+        
+        /** ---- Update profile of user ---   */
+       
+        public boolean updateProfile(int userId, String fullName, String phone, String address) {
+            String sql = "UPDATE users SET full_name=?, phone=?, address=? WHERE user_id=?";
+            try (java.sql.Connection conn = DBConfig.getConnection();
+                 java.sql.PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, fullName);
+                ps.setString(2, phone);
+                ps.setString(3, address);
+                ps.setInt(4, userId);
+                return ps.executeUpdate() > 0;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
 }
 
 

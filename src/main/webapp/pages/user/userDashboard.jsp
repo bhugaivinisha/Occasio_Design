@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>My Dashboard - OccasioDesign</title>
+    <title> My Dashboard - OccasioDesign</title>
     <!-- Main stylesheet — same as every other page -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
 </head>
@@ -29,7 +29,7 @@
 <nav>
     <a class="logo" href="${pageContext.request.contextPath}/home">✦ OccasioDesign</a>
     <div class="nav-links">
-        <a href="${pageContext.request.contextPath}/home">🏠 Home</a>
+        <a href="${pageContext.request.contextPath}/home"> Home</a>
         <a href="${pageContext.request.contextPath}/about">About</a>
         <a href="${pageContext.request.contextPath}/contact">Contact</a>
         <a href="${pageContext.request.contextPath}/userDashboard">My Dashboard</a>
@@ -44,14 +44,14 @@
     <!-- USER SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-title">My Account</div>
-        <a href="${pageContext.request.contextPath}/userDashboard" class="active">📋 My Bookings</a>
-        <a href="${pageContext.request.contextPath}/booking">🎉 New Booking</a>
+        <a href="${pageContext.request.contextPath}/userDashboard" class="active"> My Bookings</a>
+        <a href="${pageContext.request.contextPath}/booking">New Booking</a>
         <div class="sidebar-title" style="margin-top:24px;">Browse</div>
-        <a href="${pageContext.request.contextPath}/home">🏠 Home</a>
-        <a href="${pageContext.request.contextPath}/about">ℹ️ About Us</a>
-        <a href="${pageContext.request.contextPath}/contact">📬 Contact</a>
+        <a href="${pageContext.request.contextPath}/home"> Home</a>
+        <a href="${pageContext.request.contextPath}/about">About Us</a>
+        <a href="${pageContext.request.contextPath}/contact">Contact</a>
         <div class="sidebar-title" style="margin-top:24px;">Account</div>
-        <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </div>
 
     <!-- MAIN CONTENT AREA -->
@@ -59,14 +59,14 @@
 
         <!-- Welcome Banner -->
         <div style="background:white; padding:22px 26px; border-radius:12px; margin-bottom:26px; 
-                    border-left:5px solid var(--brown-mid); box-shadow:var(--shadow-sm);">
-            <h1 style="margin:0; font-size:1.5rem; color:var(--brown-dark);">
-                👋 Welcome, <%= fullName != null ? fullName : "User" %>!
+                    border-left:5px solid var(--purple-mid); box-shadow:var(--shadow-sm);">
+            <h1 style="margin:0; font-size:1.5rem; color:var(--purple-dark);">
+                 Welcome, <%= fullName != null ? fullName : "User" %>!
             </h1>
             <p style="color:var(--text-light); margin-top:6px;">
                 Manage your event bookings here. Need something new?
                 <a href="${pageContext.request.contextPath}/booking"
-                   style="color:var(--brown-mid); font-weight:600; text-decoration:none;">Book an event →</a>
+                   style="color:var(--purple-mid); font-weight:600; text-decoration:none;">Book an event :) </a>
             </p>
         </div>
 
@@ -80,7 +80,10 @@
 
         <!-- Bookings Section Header -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-            <h2 style="color:var(--brown-dark); font-size:1.3rem; margin:0;">📋 My Bookings</h2>
+            <h2 style="color:var(--purple-dark); font-size:1.3rem; margin:0;"> My Bookings</h2>
+            
+            <a href="${pageContext.request.contextPath}/editProfile"
+   			class="btn btn-warning" style="margin-right:8px;"> Edit Profile</a>
             <a href="${pageContext.request.contextPath}/booking"
                class="btn btn-warning">+ New Booking</a>
         </div>
@@ -118,11 +121,11 @@
                                 String status = b.getStatus();
                                 if ("confirmed".equals(status)) {
                             %>
-                            <span class="badge badge-confirmed">✅ Confirmed</span>
+                            <span class="badge badge-confirmed">Confirmed</span>
                             <% } else if ("cancelled".equals(status)) { %>
-                            <span class="badge badge-cancelled">❌ Cancelled</span>
+                            <span class="badge badge-cancelled"> Cancelled</span>
                             <% } else { %>
-                            <span class="badge badge-pending">⏳ Pending</span>
+                            <span class="badge badge-pending">Pending</span>
                             <% } %>
                         </td>
                         <td>
@@ -149,7 +152,7 @@
                         <td colspan="7" style="text-align:center; color:var(--text-light); padding:36px;">
                             You have no bookings yet!
                             <a href="${pageContext.request.contextPath}/booking"
-                               style="color:var(--brown-mid); font-weight:600; text-decoration:none; margin-left:6px;">
+                               style="color:var(--purple-mid); font-weight:600; text-decoration:none; margin-left:6px;">
                                 Book your first event →
                             </a>
                         </td>
@@ -163,8 +166,8 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-    <p><strong style="color: var(--gold);">✦ OccasioDesign</strong> — Kathmandu, Nepal</p>
-    <p style="margin-top: 8px;">📞 9810000000 &nbsp;|&nbsp; ✉ info@occasiodesign.com.np</p>
+    <p><strong style="color: var(--gold);">✦ OccasioDesign</strong> — Pokhara, Nepal</p>
+    <p style="margin-top: 8px;">9810000000 &nbsp;|&nbsp; info@occasiodesign.com.np</p>
     <p style="margin-top: 12px; font-size: 0.8rem;">© 2026 OccasioDesign. All rights reserved.</p>
 </footer>
 
