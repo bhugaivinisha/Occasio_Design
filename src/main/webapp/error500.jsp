@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>500 - Server Error | OccasioDesign</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
     <style>
         body {
             font-family: 'Jost', sans-serif;
@@ -21,7 +22,7 @@
             padding: 60px 40px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            max-width: 420px;
+            max-width: 480px;
         }
         .error-box h1 {
             font-size: 6rem;
@@ -29,14 +30,7 @@
             margin: 0 0 10px 0;
             font-weight: 700;
         }
-        .error-box h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-        .error-box p {
-            color: #666;
-            font-size: 1.05rem;
-        }
+        
         .btn-home {
             display: inline-block;
             margin-top: 25px;
@@ -51,6 +45,7 @@
         .btn-home:hover {
             background: var(--emerald-dark);
         }
+        
     </style>
 </head>
 <body>
@@ -59,7 +54,14 @@
         <h2>Internal Server Error</h2>
         <p>Sorry, something went wrong.<br>Please try again later.</p>
         
-        <a href="http://localhost:8088/OccasioDesign/home" class="btn-home">Go Back Home</a>
+        <% if (exception != null) { %>
+            <small style="color:#d32f2f;">Error: <%= exception.getMessage() %></small>
+        <% } %>
+        
+        <br><br>
+        <a href="${pageContext.request.contextPath}/home" class="btn-home">
+            ← Go Back to Home
+        </a>
     </div>
 </body>
 </html>
