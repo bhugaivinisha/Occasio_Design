@@ -1,30 +1,11 @@
-/* 
-Admin: bhugaivinisha@gmail.com
-password: Binisha@123
-User : binisha@gmail.com
-password: Binisha@123
-*/
-
-
-
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: May 16, 2026 at 06:11 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- --------------------------------------
+-- -------------------------------------- 
+-- Admin: bhugaivinisha@gmail.com
+-- password: Binisha@123
+-- User : binisha@gmail.com
+-- password: Binisha@123
+-- --------------------------------------
+-- --------------------------------------
 
 --
 -- Database: `occasio_design`
@@ -55,7 +36,6 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`booking_id`, `user_id`, `event_id`, `theme_id`, `event_date`, `booking_date`, `event_location`, `number_of_guests`, `total_price`, `status`, `special_request`) VALUES
-(1, 1, 1, 1, '2026-05-02', '2026-04-17 00:31:00', 'Pokhara Lakeside', 50, 17000.00, 'confirmed', 'Please include a cake table and a balloon photo corner.'),
 (3, 3, 3, 3, '2026-05-18', '2026-04-17 00:31:00', 'Lalitpur Grand Hall', 200, 47000.00, 'confirmed', 'Need a luxury stage and welcome board.'),
 (4, 4, 4, 4, '2026-05-22', '2026-04-17 00:31:00', 'Bhaktapur Family Home', 40, 25000.00, 'pending', 'Add baby boy theme items and pastel balloons.'),
 (5, 5, 5, 5, '2026-06-01', '2026-04-17 00:31:00', 'Butwal Event Center', 60, 19500.00, 'confirmed', 'Need a photo wall with graduation caps.'),
@@ -101,10 +81,10 @@ INSERT INTO `event_types` (`event_id`, `event_name`, `description`, `category`, 
 (5, 'Graduation Party', 'Modern graduation celebration with cap, gown colors, photo zone, and table decoration.', 'Achievement', 14000.00, 70, 'Event Space', 4, '2026-04-17 00:31:00', 'active'),
 (6, 'Corporate Event', 'Professional event styling for office meetings, product launches, and company gatherings.', 'Business', 22000.00, 150, 'Conference Hall', 6, '2026-04-17 00:31:00', 'active'),
 (7, 'Festival Decoration', 'Festival-themed decoration for Dashain, Tihar, Holi, and other cultural events.', 'Festival', 16000.00, 120, 'Temple / Community Hall', 5, '2026-04-17 00:31:00', 'active'),
-(8, 'Engagement Ceremony', 'Stylish engagement decoration with ring stage, flower décor, and photo corner.', 'Celebration', 25000.00, 120, 'Banquet Hall', 6, '2026-04-17 00:31:00', 'active'),
+(8, 'Engagement Ceremony', 'Stylish engagement decoration with ring stage, flower decor, and photo corner.', 'Celebration', 25000.00, 120, 'Banquet Hall', 6, '2026-04-17 00:31:00', 'active'),
 (9, 'Farewell Party', 'Warm farewell setup with memory wall, balloons, and celebration stage decoration.', 'Social', 13000.00, 90, 'School / College Hall', 4, '2026-04-17 00:31:00', 'active'),
 (10, 'New Year Party', 'Colorful new year countdown decoration with lights, confetti, and party backdrop.', 'Celebration', 20000.00, 150, 'Rooftop Venue', 6, '2026-04-17 00:31:00', 'active'),
-(11, 'Suprise Party', 'Turn an ordinary day into an unforgettable memory! A surprise party is the ultimate way to celebrate someone special - filled with secret planning, unexpected moments, and pure joy when the big reveal happens. ', 'General', 10000.00, 1000, 'Kathmandu', 4, '2026-05-15 08:58:26', 'inactive');
+(11, 'Surprise Party', 'Turn an ordinary day into an unforgettable memory with secret planning and pure joy on reveal day.', 'General', 10000.00, 1000, 'Kathmandu', 4, '2026-05-15 08:58:26', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -130,16 +110,16 @@ CREATE TABLE `themes` (
 --
 
 INSERT INTO `themes` (`theme_id`, `theme_name`, `event_id`, `color_scheme`, `decoration_type`, `price`, `availability_status`, `description`, `image_path`, `created_at`) VALUES
-(1, 'Rainbow Birthday', 1, 'Multi-color', 'Balloon Arch', 5000.00, 'available', 'Bright birthday theme with rainbow balloons, number stand, and cake table styling.', 'images/themes/birthday_rainbow.jpg', '2026-04-17 00:31:00'),
-(2, 'Golden Anniversary', 2, 'Gold and White', 'Flower Stage', 6500.00, 'available', 'Elegant anniversary theme with gold lights, white drapes, and floral accents.', 'images/themes/anniversary_golden.jpg', '2026-04-17 00:31:00'),
-(3, 'Royal Reception', 3, 'Maroon and Gold', 'Luxury Backdrop', 12000.00, 'available', 'Premium wedding reception theme with luxury backdrop and stage decor.', 'images/themes/reception_royal.jpg', '2026-04-17 00:31:00'),
-(4, 'Pastel Baby Joy', 4, 'Pink, Blue and Cream', 'Soft Balloon Setup', 7000.00, 'available', 'Soft pastel baby shower theme with cute props and balloon clusters.', 'images/themes/babyshower_pastel.jpg', '2026-04-17 00:31:00'),
-(5, 'Graduation Glow', 5, 'Black and Gold', 'Photo Wall', 5500.00, 'available', 'Stylish graduation theme with cap motifs, gold accents, and photo backdrop.', 'images/themes/graduation_glow.jpg', '2026-04-17 00:31:00'),
-(6, 'Corporate Minimal', 6, 'Blue and White', 'Clean Stage Setup', 8000.00, 'available', 'Modern corporate styling with minimal decor, branding board, and stage lights.', 'images/themes/corporate_minimal.jpg', '2026-04-17 00:31:00'),
-(7, 'Festive Glow', 7, 'Red, Yellow and Orange', 'Traditional Décor', 6000.00, 'available', 'Festival decoration with traditional colors, diyas, banners, and rangoli corner.', 'images/themes/festival_glow.jpg', '2026-04-17 00:31:00'),
-(8, 'Elegant Proposal', 8, 'Red and White', 'Heart Stage', 9000.00, 'available', 'Romantic engagement theme with heart backdrop, candles, and floral setup.', 'images/themes/engagement_elegant.jpg', '2026-04-17 00:31:00'),
-(9, 'Memory Lane', 9, 'Blue and Silver', 'Memory Board', 4500.00, 'available', 'Farewell theme with memory board, balloon decor, and farewell message display.', 'images/themes/farewell_memory.jpg', '2026-04-17 00:31:00'),
-(10, 'Midnight Countdown', 10, 'Black, Gold and Silver', 'Party Lights', 7500.00, 'available', 'New year theme with countdown stage, glitter lights, and confetti decoration.', 'images/themes/newyear_midnight.jpg', '2026-04-17 00:31:00');
+(1, 'Rainbow Birthday', 1, 'Multi-color', 'Balloon Arch', 5000.00, 'available', 'Bright birthday theme with rainbow balloons, number stand, and cake table styling.', 'images/themes/birthday.jpg', '2026-04-17 00:31:00'),
+(2, 'Golden Anniversary', 2, 'Gold and White', 'Flower Stage', 6500.00, 'available', 'Elegant anniversary theme with gold lights, white drapes, and floral accents.', 'images/themes/anniversary.jpg', '2026-04-17 00:31:00'),
+(3, 'Royal Reception', 3, 'Maroon and Gold', 'Luxury Backdrop', 12000.00, 'available', 'Premium wedding reception theme with luxury backdrop and stage decor.', 'images/themes/reception.jpg', '2026-04-17 00:31:00'),
+(4, 'Pastel Baby Joy', 4, 'Pink, Blue and Cream', 'Soft Balloon Setup', 7000.00, 'available', 'Soft pastel baby shower theme with cute props and balloon clusters.', 'images/themes/babyshower.jpg', '2026-04-17 00:31:00'),
+(5, 'Graduation Glow', 5, 'Black and Gold', 'Photo Wall', 5500.00, 'available', 'Stylish graduation theme with cap motifs, gold accents, and photo backdrop.', 'images/themes/graduation.jpg', '2026-04-17 00:31:00'),
+(6, 'Corporate Minimal', 6, 'Blue and White', 'Clean Stage Setup', 8000.00, 'available', 'Modern corporate styling with minimal decor, branding board, and stage lights.', 'images/themes/corporate.jpg', '2026-04-17 00:31:00'),
+(7, 'Festive Glow', 7, 'Red, Yellow and Orange', 'Traditional Decor', 6000.00, 'available', 'Festival decoration with traditional colors, diyas, banners, and rangoli corner.', 'images/themes/festival.jpg', '2026-04-17 00:31:00'),
+(8, 'Elegant Proposal', 8, 'Red and White', 'Heart Stage', 9000.00, 'available', 'Romantic engagement theme with heart backdrop, candles, and floral setup.', 'images/themes/engagement.jpg', '2026-04-17 00:31:00'),
+(9, 'Memory Lane', 9, 'Blue and Silver', 'Memory Board', 4500.00, 'available', 'Farewell theme with memory board, balloon decor, and farewell message display.', 'images/themes/farewell.jpg', '2026-04-17 00:31:00'),
+(10, 'Midnight Countdown', 10, 'Black, Gold and Silver', 'Party Lights', 7500.00, 'available', 'New year theme with countdown stage, glitter lights, and confetti decoration.', 'images/themes/newyear.jpg', '2026-04-17 00:31:00');
 
 -- --------------------------------------------------------
 
@@ -165,7 +145,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `full_name`, `email`, `phone`, `password`, `gender`, `date_of_birth`, `role`, `address`, `created_at`) VALUES
-(1, 'Binisha Bhugai', 'binisha@example.com', '9810000001', '$2a$10$GUbQrqzbnCqA3lw6pu1ZKeBn1ZqSatg3T5kPjrvhIi7kPjv23P/xO', 'Female', '2006-08-15', 'user', 'Pokhara, Nepal', '2026-04-17 00:31:00'),
 (3, 'Sujata Shrestha', 'sujata.shrestha@example.com', '9810000003', '$2a$10$GUbQrqzbnCqA3lw6pu1ZKeBn1ZqSatg3T5kPjrvhIi7kPjv23P/xO', 'Female', '2004-11-09', 'user', 'Lalitpur, Nepal', '2026-04-17 00:31:00'),
 (4, 'Rohan Thapa', 'rohan.thapa@example.com', '9810000004', '$2a$10$GUbQrqzbnCqA3lw6pu1ZKeBn1ZqSatg3T5kPjrvhIi7kPjv23P/xO', 'Male', '2003-06-30', 'user', 'Bhaktapur, Nepal', '2026-04-17 00:31:00'),
 (5, 'Mina Gurung', 'mina.gurung@example.com', '9810000005', '$2a$10$GUbQrqzbnCqA3lw6pu1ZKeBn1ZqSatg3T5kPjrvhIi7kPjv23P/xO', 'Female', '2002-02-14', 'user', 'Butwal, Nepal', '2026-04-17 00:31:00'),
@@ -175,7 +154,7 @@ INSERT INTO `users` (`user_id`, `full_name`, `email`, `phone`, `password`, `gend
 (9, 'Anita Sharma', 'anita.sharma@example.com', '9810000009', '$2a$10$GUbQrqzbnCqA3lw6pu1ZKeBn1ZqSatg3T5kPjrvhIi7kPjv23P/xO', 'Female', '2004-07-11', 'user', 'Hetauda, Nepal', '2026-04-17 00:31:00'),
 (10, 'Kiran Lama', 'kiran.lama@example.com', '9810000010', '$2a$10$GUbQrqzbnCqA3lw6pu1ZKeBn1ZqSatg3T5kPjrvhIi7kPjv23P/xO', 'Male', '2003-10-05', 'admin', 'Pokhara, Nepal', '2026-04-17 00:31:00'),
 (11, 'Binisha Bhugai', 'bhugaivinisha@gmail.com', '9806585567', '$2a$10$GUbQrqzbnCqA3lw6pu1ZKeBn1ZqSatg3T5kPjrvhIi7kPjv23P/xO', 'Female', '2010-01-05', 'admin', 'Simpani', '2026-05-02 09:59:55'),
-(12, 'Binisha Bhugai', 'binisha@gmail.com', '9810000000', '$2a$10$6VSu32l6B4nRqsTvGIOf5OMXOdo7.uPJRTIfgTvMuaa7L1wiouD6.', 'Female', '2006-05-10', 'user', 'Kathmandu', '2026-05-15 09:48:40');
+(12, 'Bhugai', 'binisha@gmail.com', '9820000000', '$2a$10$6VSu32l6B4nRqsTvGIOf5OMXOdo7.uPJRTIfgTvMuaa7L1wiouD6.', 'Female', '2006-05-10', 'user', 'Kathmandu', '2026-05-15 09:48:40');
 
 --
 -- Indexes for dumped tables
@@ -258,6 +237,3 @@ ALTER TABLE `themes`
   ADD CONSTRAINT `themes_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event_types` (`event_id`) ON DELETE CASCADE;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

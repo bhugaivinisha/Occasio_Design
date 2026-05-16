@@ -41,7 +41,6 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
     	
     	
-
         String email = request.getParameter("email");
         String typedPassword = request.getParameter("password");
 
@@ -94,7 +93,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 response.sendRedirect(request.getContextPath() + "/home");
             }
-        	//----------------------
+        	
         } else {
             // Wrong password
             request.setAttribute("error", "Invalid email or password!");
