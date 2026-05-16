@@ -59,7 +59,7 @@
     <!-- MAIN CONTENT AREA -->
     <div class="dashboard-main">
         <div class="dashboard-header">
-            <h1>Welcome, <%= adminName != null ? adminName : "Admin" %>! 👋</h1><br> 
+            <h1>Welcome, <%= adminName != null ? adminName : "Admin" %>! </h1><br> 
             <p>Here is an overview of your OccasioDesign system today.</p>
         </div>
 

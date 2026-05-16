@@ -123,8 +123,8 @@
                 <div class="info-item">
                     <span class="icon">📍</span>
                     <div>
-                        <strong>Location</strong>
-                        <span>Pokhara, Nepal</span>
+                        <strong> Location</strong>
+                        <span> Pokhara, Nepal</span>
                     </div>
                 </div>
                 <div class="info-item">
