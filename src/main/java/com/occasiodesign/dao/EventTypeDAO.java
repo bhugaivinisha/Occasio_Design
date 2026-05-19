@@ -83,7 +83,8 @@ public class EventTypeDAO implements EventTypeDAOInterface {
     @Override
     public int updateEventType(EventType eventType) {
         try {
-            final String UPDATE = "UPDATE event_types SET event_name=?, description=?, category=?, base_price=?, max_guests=?, location=?, duration_hours=? WHERE event_id=?";
+            final String UPDATE = "UPDATE event_types SET event_name=?, description=?, category=?, base_price=?, "
+            		+ "max_guests=?, location=?, duration_hours=? WHERE event_id=?";
             PreparedStatement stmt = conn.prepareStatement(UPDATE);
             stmt.setString(1, eventType.getEventName());
             stmt.setString(2, eventType.getDescription());

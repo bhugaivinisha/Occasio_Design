@@ -211,28 +211,7 @@ public class UserDAO implements UserDAOInterface {
 
 
 
-        /** Returns all users from the database. */
-        public List<User> getAllUsers1() {
-            List<User> list = new ArrayList<>();
-            String sql = "SELECT * FROM users ORDER BY created_at DESC";
-            try (Connection conn = DBConfig.getConnection();
-                 PreparedStatement ps = conn.prepareStatement(sql);
-                 ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    User u = new User();
-                    u.setUserId(rs.getInt("user_id"));
-                    u.setFullName(rs.getString("full_name"));
-                    u.setEmail(rs.getString("email"));
-                    u.setPhone(rs.getString("phone"));
-                    u.setRole(rs.getString("role"));
-                    u.setAddress(rs.getString("address"));
-                    list.add(u);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return list;
-        }
+
         /** Deletes a user by ID.
          * @return */
         @Override
@@ -241,7 +220,7 @@ public class UserDAO implements UserDAOInterface {
             try (Connection conn = DBConfig.getConnection();
                  PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, userId);
-                ps.executeUpdate();
+                return ps.executeUpdate();
             } catch (Exception e) {
                 e.printStackTrace();
             }
