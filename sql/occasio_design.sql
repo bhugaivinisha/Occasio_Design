@@ -17,7 +17,12 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
+-- Admin: bhugaivinisha@gmail.com
+-- Password: Binisha@123
+-- User: binisha@gmail.com
+-- Password: Binisha@123
+-- --------------------------------------------------------
+-- --------------------------------------------------------
 -- Database: `occasio_design`
 --
 
