@@ -71,12 +71,16 @@
         </div>
 
         <!-- Success/Error messages -->
-        <% if (request.getAttribute("success") != null) { %>
-        <p class="success-msg"><%= request.getAttribute("success") %></p>
-        <% } %>
-        <% if (request.getAttribute("error") != null) { %>
-        <p class="error-msg"><%= request.getAttribute("error") %></p>
-        <% } %>
+		<% if ("success".equals(request.getParameter("booking"))) { %>
+		<div style="background:#d4edda; color:#155724; border:1px solid #c3e6cb;
+            padding:15px 20px; margin-bottom:20px; border-radius:8px; font-size:15px;">
+     		<strong>Booking Successful!</strong>
+    		Your event has been booked. We will contact you soon.
+		</div>
+		<% } %>
+		<% if (request.getAttribute("error") != null) { %>
+		<p class="error-msg"><%= request.getAttribute("error") %></p>
+		<% } %>
 
         <!-- Bookings Section Header -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">

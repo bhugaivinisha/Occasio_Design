@@ -106,7 +106,7 @@ public class BookingServlet extends HttpServlet {
             new BookingDAO().insertBooking(booking);
 
             // Success — dashboard pathau
-            response.sendRedirect(request.getContextPath() + "/userDashboard");
+            response.sendRedirect(request.getContextPath() + "/userDashboard?booking=success");
 
         } catch (Exception e) {
             // Error aayo bhane form wapas dekhaau

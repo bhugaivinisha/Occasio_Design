@@ -31,7 +31,9 @@ public class BookingDAO implements BookingDAOInterface {
     @Override
     public int insertBooking(Booking booking) {
         try {
-            final String INSERT = "INSERT INTO bookings (user_id, event_id, theme_id, event_date, event_location, number_of_guests, total_price, status, special_request) VALUES (?,?,?,?,?,?,?,?,?)";
+            final String INSERT = "INSERT INTO bookings (user_id, event_id, theme_id, event_date, "
+            		+ "event_location, number_of_guests, total_price, status, "
+            		+ "special_request) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(INSERT);
             stmt.setInt(1, booking.getUserId());
             stmt.setInt(2, booking.getEventId());
