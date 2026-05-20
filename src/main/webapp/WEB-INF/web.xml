@@ -103,6 +103,8 @@
         <exception-type>java.lang.Exception</exception-type>
         <location>/error500.jsp</location>
     </error-page>
-
+	<session-config>
+    <session-timeout>30</session-timeout>
+	</session-config>
 
 </web-app>
